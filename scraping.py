@@ -18,7 +18,8 @@ def scrape_all():
       "news_paragraph": news_paragraph,
       "featured_image": featured_image(browser),
       "facts": mars_facts(),
-      "last_modified": dt.datetime.now()
+      "last_modified": dt.datetime.now(),
+      "hemisphere_image" : mars_hemispheres(browser)
     }
     # Stop webdriver and return data
     browser.quit()
@@ -89,10 +90,38 @@ def mars_facts():
         df = pd.read_html('https://galaxyfacts-mars.com')[0]
     except BaseException:
         return None
-    df.columns=['description', 'Mars', 'Earth']
-    df.set_index('description', inplace=True)
+    df.columns=['Description', 'Mars', 'Earth']
+    df.set_index('Description', inplace=True)
 
     return df.to_html()
+
+def mars_hemispheres(browser):
+    url = 'https://marshemispheres.com/'
+    browser.visit(url)
+
+    hemisphere_image_urls = []
+
+    html = browser.html
+    hemisphere_img_soup = soup(html, 'html.parser')
+    hemisphere_img_soup
+
+    for i in range(4):
+        hemisphere_info = {}
+        hemisphere_info['title'] = hemisphere_img_soup.find_all('h3')[i].text
+    
+        #click link
+        browser.find_by_css("a.product-item h3")[0].click()
+    
+        #extract image url
+        img_url = browser.links.find_by_text("Sample")
+        hemisphere_info['image_url'] = img_url['href']
+    
+        hemisphere_image_urls.append(hemisphere_info)
+    
+        #back
+        browser.back()
+    
+    return hemisphere_image_urls
 
 if __name__ == "__main__":
     # If running as script, print scraped data
