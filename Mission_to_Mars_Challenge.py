@@ -85,7 +85,7 @@ for i in range(4):
     hemisphere_info['title'] = hemisphere_img_soup.find_all('h3')[i].text
     
     #click link
-    browser.find_by_css("a.product-item h3")[0].click()
+    browser.find_by_css("a.product-item h3")[i].click()
     
     #extract image url
     img_url = browser.links.find_by_text("Sample")
