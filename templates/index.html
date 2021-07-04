@@ -16,7 +16,7 @@
       <div class="jumbotron text-center" style = "background-color: #a05b07">
         <h1 style = "color:#ffffff">Mission to Mars</h1>
         <!-- Add a button to activate scraping script -->
-        <p><a class="btn btn-primary btn-lg active" style = "background-color: #e67e00" href="/scrape" role="button">Scrape New Data</a></p>
+        <p><a class="btn btn-primary btn-lg active" style = "background-color: #e67e00" href="/scrape" role="button"><strong>Scrape New Data</strong></a></p>
       </div>
 
       <!-- Add section for Mars News -->
@@ -48,7 +48,7 @@
         <div class="col-md-4" style = "color: #ffffff">
           <!-- Mars Facts -->
           <div class="row" id="mars-facts" style = "color: #ffffff">
-            <h3 style = "color:#ffffff">Mars Facts</h3>
+            <h3 style = "color:#ffffff"><strong>Mars Facts</strong></h3>
             {{ mars.facts | safe }}
           </div>
         </div>
@@ -57,7 +57,7 @@
       <!-- Section for Mars Hemispheres -->
       <div class="row" id="mars-hemispheres" style = "background-color: #a35a00">
         <div class="page-header">
-          <h2 class="text-center" style = "color:#ffffff">Mars Hemispheres</h2>
+          <h2 class="text-center" style = "color:#ffffff"><strong>Mars Hemispheres</strong></h2>
         </div>
 
         {% for hemisphere in mars.hemisphere_image %}
